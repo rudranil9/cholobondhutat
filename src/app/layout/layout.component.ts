@@ -127,7 +127,12 @@ export class LayoutComponent implements OnInit, OnDestroy {
   themeAnimationClass: 'to-night' | 'to-day' = 'to-night';
   private destroy$ = new Subject<void>();
 
-  constructor(private layoutService: LayoutService, private router: Router) {}
+  constructor(private layoutService: LayoutService, private router: Router) {
+    // Force immediate scroll to top on component creation
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }
 
   ngOnInit(): void {
     this.layoutService.darkMode$

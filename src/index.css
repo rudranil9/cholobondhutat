@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Ensure page loads at top */
+html {
+  scroll-behavior: auto !important;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+/* Force initial scroll position */
+body {
+  position: relative;
+}
+
 /* Cholo Bondhu Tour & Travels - Professional Design System */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
 
