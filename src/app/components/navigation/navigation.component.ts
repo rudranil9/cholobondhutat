@@ -70,12 +70,14 @@ import { Subject } from 'rxjs';
         </div>
 
         <!-- Mobile Navigation -->
-        <div class="md:hidden transition-all duration-300" [class.hidden]="!mobileMenuOpen">
+        <div class="md:hidden transition-all duration-300 overflow-hidden" 
+             [ngClass]="{ 'max-h-0 opacity-0': !mobileMenuOpen, 'max-h-96 opacity-100': mobileMenuOpen }">
           <div class="px-2 pt-2 pb-3 space-y-1 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
             <a *ngFor="let item of menuItems" 
                [routerLink]="item.route"
                [fragment]="item.fragment || undefined"
                (click)="closeMobileMenu()"
+               (mouseenter)="preloadRoute(item.route)"
                routerLinkActive="bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300"
                [routerLinkActiveOptions]="{ exact: true }"
                class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
@@ -96,6 +98,11 @@ import { Subject } from 'rxjs';
   styles: [`
     :host {
       display: block;
+    }
+
+    /* Mobile Menu Animation */
+    .mobile-menu-container {
+      transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
     }
 
     /* Professional Navigation Styles */
@@ -302,12 +309,18 @@ export class NavigationComponent implements OnInit, OnDestroy {
   ];
 
   constructor(private router: Router, private layoutService: LayoutService) {
+    // Ensure mobile menu starts closed
+    this.mobileMenuOpen = false;
+    
     if (typeof window !== 'undefined') {
       window.addEventListener('scroll', this.onScroll.bind(this));
     }
   }
 
   ngOnInit() {
+    // Ensure mobile menu is closed on initialization
+    this.mobileMenuOpen = false;
+    
     // Close mobile menu on route changes
     this.router.events
       .pipe(
@@ -386,9 +399,11 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   toggleMobileMenu() {
     this.mobileMenuOpen = !this.mobileMenuOpen;
+    console.log('Mobile menu toggled:', this.mobileMenuOpen);
   }
 
   closeMobileMenu() {
     this.mobileMenuOpen = false;
+    console.log('Mobile menu closed');
   }
 }

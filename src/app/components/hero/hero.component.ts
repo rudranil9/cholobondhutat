@@ -42,11 +42,11 @@ import { LayoutService } from '../../services/layout.service';
           <div class="flex flex-wrap justify-center gap-8 text-center py-6">
             <div class="flex items-center space-x-2">
               <span class="text-2xl">📍</span>
-              <span class="text-lg font-medium">500+ Destinations</span>
+              <span class="text-lg font-medium">100+ Destinations</span>
             </div>
             <div class="flex items-center space-x-2">
               <span class="text-2xl">📅</span>
-              <span class="text-lg font-medium">10,000+ Happy Travelers</span>
+              <span class="text-lg font-medium">1,200+ Happy Travelers</span>
             </div>
           </div>
 
