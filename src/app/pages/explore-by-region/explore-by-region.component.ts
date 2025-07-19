@@ -501,7 +501,8 @@ export class ExploreByRegionComponent implements OnInit, AfterViewInit {
   constructor(private router: Router, private route: ActivatedRoute, private layoutService: LayoutService) {}
 
   ngOnInit(): void {
-    // Subscribe to route fragments to handle anchor navigation
+    // Subscribe to route fragments to handle anchor navigation (temporarily disabled to test scroll fix)
+    /*
     this.route.fragment.subscribe(fragment => {
       if (fragment) {
         setTimeout(() => {
@@ -509,16 +510,19 @@ export class ExploreByRegionComponent implements OnInit, AfterViewInit {
         }, 100);
       }
     });
+    */
   }
 
   ngAfterViewInit(): void {
-    // Handle any fragment that was present on initial load
+    // Handle any fragment that was present on initial load (temporarily disabled to test scroll fix)
+    /*
     const fragment = this.route.snapshot.fragment;
     if (fragment) {
       setTimeout(() => {
         this.scrollToSection(fragment);
       }, 500);
     }
+    */
   }
 
   private scrollToSection(elementId: string): void {

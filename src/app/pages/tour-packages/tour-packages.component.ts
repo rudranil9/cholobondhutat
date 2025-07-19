@@ -538,26 +538,12 @@ export class TourPackagesComponent implements OnInit, OnDestroy {
   }
 
   contactUs(): void {
-    // Navigate to contact page
-    this.router.navigate(['/'], { fragment: 'contact' }).then(() => {
-      setTimeout(() => {
-        const element = document.getElementById('contact');
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 100);
-    });
+    // Navigate to contact page (temporarily disabled scroll to test fix)
+    this.router.navigate(['/contact']);
   }
 
   getCustomQuote(): void {
-    // Navigate to contact page with query parameter for custom quote
-    this.router.navigate(['/'], { fragment: 'contact', queryParams: { request: 'custom-quote' } }).then(() => {
-      setTimeout(() => {
-        const element = document.getElementById('contact');
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 100);
-    });
+    // Navigate to contact page with query parameter for custom quote (temporarily disabled scroll to test fix)
+    this.router.navigate(['/contact'], { queryParams: { request: 'custom-quote' } });
   }
 }

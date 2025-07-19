@@ -128,10 +128,32 @@ export class LayoutComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
   constructor(private layoutService: LayoutService, private router: Router) {
-    // Force immediate scroll to top on component creation
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
+    // Force immediate scroll to top on component creation - multiple attempts
+    this.forceScrollToTop();
+    
+    // Also force after a micro-delay
+    setTimeout(() => this.forceScrollToTop(), 0);
+    setTimeout(() => this.forceScrollToTop(), 10);
+    setTimeout(() => this.forceScrollToTop(), 50);
+  }
+
+  private forceScrollToTop(): void {
+    try {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      // Additional fallbacks
+      if (document.scrollingElement) {
+        document.scrollingElement.scrollTop = 0;
+      }
+    } catch (e) {
+      // Fallback if anything fails
+      try {
+        window.scrollTo(0, 0);
+      } catch (fallbackError) {
+        console.log('Layout scroll reset failed:', fallbackError);
+      }
+    }
   }
 
   ngOnInit(): void {
