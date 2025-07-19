@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterModule, Router, NavigationEnd } from '@angular/router';
 import { Subject, takeUntil, filter } from 'rxjs';
@@ -128,32 +128,32 @@ export class LayoutComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
   constructor(private layoutService: LayoutService, private router: Router) {
-    // Force immediate scroll to top on component creation - multiple attempts
-    this.forceScrollToTop();
+    if (window.history.scrollRestoration) {
+      window.history.scrollRestoration = 'manual';
+    }
     
-    // Also force after a micro-delay
-    setTimeout(() => this.forceScrollToTop(), 0);
-    setTimeout(() => this.forceScrollToTop(), 10);
-    setTimeout(() => this.forceScrollToTop(), 50);
+    // Force scroll to top on every navigation
+    this.router.events
+      .pipe(
+        filter(event => event instanceof NavigationEnd),
+        takeUntil(this.destroy$)
+      )
+      .subscribe(() => {
+        requestAnimationFrame(() => {
+          window.scrollTo(0, 0);
+          document.documentElement.scrollTo(0, 0);
+          document.body.scrollTo(0, 0);
+        });
+      });
   }
 
-  private forceScrollToTop(): void {
-    try {
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-      // Additional fallbacks
-      if (document.scrollingElement) {
-        document.scrollingElement.scrollTop = 0;
-      }
-    } catch (e) {
-      // Fallback if anything fails
-      try {
-        window.scrollTo(0, 0);
-      } catch (fallbackError) {
-        console.log('Layout scroll reset failed:', fallbackError);
-      }
-    }
+  ngAfterViewInit() {
+    // Ensure scroll position after view initialization
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTo(0, 0);
+      document.body.scrollTo(0, 0);
+    });
   }
 
   ngOnInit(): void {

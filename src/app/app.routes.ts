@@ -1,4 +1,12 @@
-import { Routes } from '@angular/router';
+import { Routes, ExtraOptions } from '@angular/router';
+
+// Configure router options
+export const routerOptions: ExtraOptions = {
+  scrollPositionRestoration: 'enabled',
+  anchorScrolling: 'enabled',
+  scrollOffset: [0, 0],
+  initialNavigation: 'enabledBlocking'
+};
 
 export const routes: Routes = [
   {

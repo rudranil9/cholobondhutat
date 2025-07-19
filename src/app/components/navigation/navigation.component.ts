@@ -1,7 +1,9 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterModule, NavigationEnd } from '@angular/router';
 import { LayoutService } from '../../services/layout.service';
+import { filter, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-navigation',
@@ -32,9 +34,10 @@ import { LayoutService } from '../../services/layout.service';
                [fragment]="item.fragment || undefined"
                routerLinkActive="text-blue-600 font-semibold active-nav-item"
                [routerLinkActiveOptions]="{ exact: true }"
-               class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 font-medium relative nav-link group">
+               (mouseenter)="preloadRoute(item.route)"
+               class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 font-medium relative nav-link group">
               <span class="relative z-10">{{ item.label }}</span>
-              <div class="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-95 group-hover:scale-100"></div>
+              <div class="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200 transform scale-95 group-hover:scale-100"></div>
             </a>
           </div>
 
@@ -281,12 +284,14 @@ import { LayoutService } from '../../services/layout.service';
     }
   `]
 })
-export class NavigationComponent {
+export class NavigationComponent implements OnInit, OnDestroy {
   @Input() darkMode = false;
   @Output() darkModeToggle = new EventEmitter<void>();
 
   isScrolled = false;
   mobileMenuOpen = false;
+  private preloadedRoutes = new Set<string>();
+  private destroy$ = new Subject<void>();
 
   menuItems = [
     { label: 'Home', route: '/', fragment: null },
@@ -299,6 +304,48 @@ export class NavigationComponent {
   constructor(private router: Router, private layoutService: LayoutService) {
     if (typeof window !== 'undefined') {
       window.addEventListener('scroll', this.onScroll.bind(this));
+    }
+  }
+
+  ngOnInit() {
+    // Close mobile menu on route changes
+    this.router.events
+      .pipe(
+        filter(event => event instanceof NavigationEnd),
+        takeUntil(this.destroy$)
+      )
+      .subscribe(() => {
+        this.mobileMenuOpen = false;
+      });
+
+    // Components are already being preloaded via PreloadAllModules in app.config.ts
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  preloadRoute(route: string) {
+    // Simple hover preloading - just trigger the import
+    if (!this.preloadedRoutes.has(route)) {
+      this.preloadedRoutes.add(route);
+      
+      // Trigger component preloading based on route
+      switch(route) {
+        case '/tour-packages':
+          import('../../pages/tour-packages/tour-packages.component');
+          break;
+        case '/explore-by-region':
+          import('../../pages/explore-by-region/explore-by-region.component');
+          break;
+        case '/about':
+          import('../../pages/about/about.component');
+          break;
+        case '/contact':
+          import('../../pages/contact/contact.component');
+          break;
+      }
     }
   }
 
@@ -315,7 +362,20 @@ export class NavigationComponent {
 
   navigateToContact() {
     this.router.navigate(['/contact']).then(() => {
-      setTimeout(() => this.layoutService.scrollToTopInstant(), 100);
+      // Wait for the page to load, then scroll to the contact form
+      setTimeout(() => {
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+          contactForm.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start',
+            inline: 'nearest'
+          });
+        } else {
+          // Fallback to top if form not found
+          this.layoutService.scrollToTopInstant();
+        }
+      }, 300);
     });
     this.closeMobileMenu();
   }

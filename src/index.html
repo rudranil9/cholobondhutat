@@ -5,7 +5,6 @@
   <title>Cholo Bondhu - Travel & Tours</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Force deployment rebuild - scroll fix implemented -->
   <meta name="description" content="Discover incredible places with Cholo Bondhu Travel. Expert travel planning, best prices, and unforgettable experiences across India and beyond.">
   <meta name="keywords" content="travel, tours, India travel, vacation packages, travel agency, Cholo Bondhu">
   
@@ -28,72 +27,29 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <script>
-    // Immediate scroll prevention
-    window.history.scrollRestoration = 'manual';
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-  </script>
+  <!-- Preload critical images -->
+  <link rel="preload" href="/assets/destinations/cholobondhu-logo.jpg" as="image">
+  <link rel="preload" href="/assets/hero-travel-bg.jpg" as="image">
   
   <style>
-    /* Prevent any initial scroll jump */
-    html, body {
-      scroll-behavior: auto !important;
-      overflow-anchor: none;
-      overflow-y: hidden; /* Hide vertical scrollbar until positioned */
-    }
-    
-    /* Hide ALL content until positioned correctly */
     body {
-      opacity: 0;
       visibility: hidden;
-      transition: opacity 0.1s, visibility 0.1s;
-    }
-    
-    body.loaded {
-      opacity: 1;
-      visibility: visible;
-      overflow-y: auto; /* Restore scrolling */
     }
   </style>
+  <script>
+    // Force scroll to top and only then show the page
+    window.history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        document.body.style.visibility = 'visible';
+      }, 50); // Small delay to ensure render tree is ready
+    });
+  </script>
 </head>
 <body>
   <app-root></app-root>
-  
-  <script>
-    // Ensure proper scroll position before showing content
-    function ensureTopPosition() {
-      // Force scroll to top multiple times with different methods
-      window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-      window.pageYOffset = 0;
-      
-      // Set a timeout to show content after ensuring position
-      setTimeout(() => {
-        document.body.classList.add('loaded');
-      }, 50); // Small delay to ensure scroll takes effect
-    }
-    
-    // Apply immediately
-    ensureTopPosition();
-    
-    // Apply on various events
-    window.addEventListener('load', ensureTopPosition);
-    document.addEventListener('DOMContentLoaded', ensureTopPosition);
-    
-    // Keep forcing scroll to top during initial load
-    const forceScrollInterval = setInterval(() => {
-      window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-    }, 10); // Every 10ms
-    
-    // Stop forcing after 1 second
-    setTimeout(() => {
-      clearInterval(forceScrollInterval);
-    }, 1000);
-  </script>
 </body>
 </html>
