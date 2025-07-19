@@ -1,0 +1,50 @@
+DESTINATION IMAGE MAPPING FOR DURGA PUJA PACKAGES
+=================================================
+
+📋 **Image Specifications:**
+- Size: 1200x675 pixels (16:9 aspect ratio) - RECOMMENDED
+- Format: .jpg or .png
+- Quality: High resolution, sharp images
+- CSS Applied: w-full h-64 object-cover (auto-crops to fit)
+
+🗂️ **Required Image Files:**
+
+1. andaman.jpg - Pristine beaches, clear blue waters, tropical paradise
+2. bangkok-pattaya.jpg - Thai temples, floating markets, or beaches
+3. ladakh.jpg - High-altitude landscapes, monasteries, crystal lakes
+4. rajasthan.jpg - Royal palaces, forts, desert landscapes
+5. sikkim.jpg - Himalayan peaks, mountain views, monasteries
+6. kerala.jpg - Backwaters, houseboats, coconut palms
+7. shimla-manali.jpg - Snow-capped mountains, hill stations
+8. goa.jpg - Beach scenes, churches, coastal beauty
+9. darjeeling.jpg - Tea gardens, toy train, mountain views
+10. puri.jpg - Jagannath Temple, beaches, spiritual sites
+11. sundarban.jpg - Mangrove forests, wildlife, river landscapes
+12. bishnupur.jpg - Terracotta temples, heritage architecture
+13. sikkim-extended.jpg - Extended Sikkim views (can reuse sikkim.jpg)
+14. north-bengal.jpg - Tea gardens, hill stations, monasteries
+15. ranchi-netarhat.jpg - Waterfalls, tribal landscapes, forests
+16. purulia.jpg - Rock formations, tribal culture, landscapes
+17. delhi-agra.jpg - Taj Mahal, Red Fort, historic monuments
+18. kashmir.jpg - Dal Lake, houseboats, snow mountains
+19. vizag-araku.jpg - Coastal scenes, hill stations, coffee plantations
+20. dooars.jpg - Wildlife, elephant safari, forest landscapes
+21. gopalpur.jpg - Beach and hill combination, coastal beauty
+22. lava-rishop.jpg - Offbeat hills, monasteries, pine forests
+23. assam-meghalaya.jpg - Living root bridges, waterfalls, tea gardens
+24. haridwar-mussoorie.jpg - Ganga aarti, hill stations, spiritual sites
+25. pelling-ravangla.jpg - West Sikkim, Buddha park, mountain views
+26. ghatsila.jpg - Hill station, waterfalls, peaceful landscapes
+
+📱 **Upload Instructions:**
+1. Save images with exact filenames above
+2. Place in: src/assets/destinations/
+3. Recommended dimensions: 1200x675px (16:9)
+4. High quality JPEG format
+5. Images will auto-crop to fit the container
+
+🎨 **CSS Container Details:**
+- Container: w-full h-64 (full width, 256px height)
+- Behavior: object-cover (crops center, maintains aspect)
+- Effect: Hover scale 110% with smooth transition
+- Overlay: Gradient overlay on hover for text readability

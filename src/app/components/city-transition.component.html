@@ -1,0 +1,353 @@
+    <div
+      *ngIf="visible"
+      class="city-transition-overlay"
+      [class]="transitionType">
+      
+      <!-- Dynamic Sky Background -->
+      <div class="sky-background"></div>
+      
+      <!-- Sun and Moon -->
+      <div class="celestial-object">
+        <div *ngIf="transitionType === 'to-day'" class="sun"></div>
+        <div *ngIf="transitionType === 'to-night'" class="moon">
+          <div class="crater crater-1"></div>
+          <div class="crater crater-2"></div>
+        </div>
+      </div>
+      
+      <!-- Stars (visible during night transition) -->
+      <div *ngIf="transitionType === 'to-night'" class="stars-field">
+        <div class="twinkling-star star-1"></div>
+        <div class="twinkling-star star-2"></div>
+        <div class="twinkling-star star-3"></div>
+        <div class="twinkling-star star-4"></div>
+        <div class="twinkling-star star-5"></div>
+        <div class="twinkling-star star-6"></div>
+        <div class="twinkling-star star-7"></div>
+        <div class="twinkling-star star-8"></div>
+      </div>
+      
+      <!-- Flying Birds -->
+      <div class="birds-sky">
+        <div class="bird bird-1">
+          <div class="wing wing-left"></div>
+          <div class="bird-body"></div>
+          <div class="wing wing-right"></div>
+        </div>
+        <div class="bird bird-2">
+          <div class="wing wing-left"></div>
+          <div class="bird-body"></div>
+          <div class="wing wing-right"></div>
+        </div>
+        <div class="bird bird-3">
+          <div class="wing wing-left"></div>
+          <div class="bird-body"></div>
+          <div class="wing wing-right"></div>
+        </div>
+        <div class="bird bird-4">
+          <div class="wing wing-left"></div>
+          <div class="bird-body"></div>
+          <div class="wing wing-right"></div>
+        </div>
+        <div class="bird bird-5">
+          <div class="wing wing-left"></div>
+          <div class="bird-body"></div>
+          <div class="wing wing-right"></div>
+        </div>
+      </div>
+      
+      <!-- Floating Clouds -->
+      <div class="clouds-container absolute inset-0">
+        <div class="cloud-shape cloud-1">
+          <div class="cloud-part cloud-left"></div>
+          <div class="cloud-part main-cloud"></div>
+          <div class="cloud-part cloud-right"></div>
+        </div>
+        <div class="cloud-shape cloud-2">
+          <div class="cloud-part cloud-left"></div>
+          <div class="cloud-part main-cloud"></div>
+          <div class="cloud-part cloud-right"></div>
+        </div>
+        <div class="cloud-shape cloud-3">
+          <div class="cloud-part cloud-left"></div>
+          <div class="cloud-part main-cloud"></div>
+          <div class="cloud-part cloud-right"></div>
+        </div>
+      </div>
+      
+      <!-- City Skyline -->
+      <div class="absolute bottom-0 left-0 right-0 city-container">
+        <!-- Tall Office Building -->
+        <div class="building tall-office">
+          <div class="building-body">
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+          </div>
+          <div class="antenna">
+            <div class="antenna-light"></div>
+          </div>
+        </div>
+        
+        <!-- Skyscraper -->
+        <div class="building skyscraper">
+          <div class="building-body">
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+          </div>
+          <div class="antenna">
+            <div class="antenna-light"></div>
+          </div>
+        </div>
+        
+        <!-- Corporate Wide Building -->
+        <div class="building corporate-wide">
+          <div class="building-body">
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Residential Tower -->
+        <div class="building residential-tower">
+          <div class="building-body">
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+          </div>
+          <div class="antenna">
+            <div class="antenna-light"></div>
+          </div>
+        </div>
+        
+        <!-- Modern Glass Building -->
+        <div class="building modern-glass">
+          <div class="building-body">
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+            <div class="floor">
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+              <div class="office-window"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Central Transition Message -->
+      <div class="absolute top-1/2 left-1/2 transform transition-message">
+        <div class="text-center message-content">
+          <h2 class="text-3xl font-bold text-white mb-3">
+            {{ transitionType === 'to-night' ? 'Good Evening' : 'Good Morning' }}
+          </h2>
+          <p class="text-lg text-gray-200">
+            {{ transitionType === 'to-night' ? 'City lights are awakening...' : 'The sun rises over the city...' }}
+          </p>
+        </div>
+      </div>
+    </div>
