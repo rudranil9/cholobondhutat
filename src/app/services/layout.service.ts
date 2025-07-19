@@ -77,7 +77,10 @@ export class LayoutService {
 
   scrollToTopInstant(): void {
     if (typeof window !== 'undefined') {
-      window.scrollTo(0, 0);
+      // Use multiple methods to ensure scroll to top works
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
     }
   }
 
